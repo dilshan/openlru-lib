@@ -1,0 +1,16 @@
+# Open LRU Fingerprint Library - let logged-in users talk to LRU sensors
+# without root.
+#
+#   sudo cp udev/99-openlru.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules && sudo udevadm trigger
+#   (then unplug and re-plug the sensor)
+#
+# vendor:product pairs are the ones handled by src/olru_usb.c.
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0453", ATTRS{idProduct}=="9005", TAG+="uaccess", MODE="0664"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0618", ATTRS{idProduct}=="9018", TAG+="uaccess", MODE="0664"
+
+# Mass-storage style sensors ("USBKey Module").  Their ids are also used by
+# some ordinary USB storage products, which is why you may prefer to enable
+# access only if your sensor really enumerates with these ids.
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2009", ATTRS{idProduct}=="7638", TAG+="uaccess", MODE="0664"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2109", ATTRS{idProduct}=="7638", TAG+="uaccess", MODE="0664"
