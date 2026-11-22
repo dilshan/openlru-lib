@@ -25,7 +25,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger   # then re-plug
 
 ## Documentation
 
-Full documentation for the Open LRU Fingerprint Library is available in the [wiki section](wiki) of this repository. The documentation covers installation, the API, architecture, the USB protocol, supported devices, and common troubleshooting steps.
+Full documentation for the Open LRU Fingerprint Library is available in the [wiki section](https://github.com/dilshan/openlru-lib/wiki) of this repository. The documentation covers installation, the API, architecture, the USB protocol, supported devices, and common troubleshooting steps.
 
 ## Limitations
 
