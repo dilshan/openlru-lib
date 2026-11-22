@@ -1,5 +1,7 @@
 # Open LRU Fingerprint Library
 
+![LRU1011 Fingerprint Sensor](https://raw.githubusercontent.com/dilshan/openlru-lib/refs/heads/main/resources/lru1011.png)
+
 A lightweight, dependency-free C library for **LRU series USB fingerprint sensors** on Linux. It replaces the vendor's SDK for the two jobs most applications need:
 
 * **Probe** – list the sensors that are plugged in.
