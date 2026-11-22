@@ -1,0 +1,53 @@
+name: Release
+
+# Create a release by pushing a version tag, e.g.:
+#   git tag v1.0.0 && git push origin v1.0.0
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config libgtk-3-dev
+
+      - name: Build library and examples
+        run: make
+
+      - name: Package
+        run: |
+          NAME="openlru-lib-${GITHUB_REF_NAME}"
+          mkdir -p "dist/$NAME/lib" "dist/$NAME/include" "dist/$NAME/bin" "dist/$NAME/udev"
+          cp build/libopenlru.a build/libopenlru.so "dist/$NAME/lib/"
+          cp include/openlru.h "dist/$NAME/include/"
+          cp build/gtk_probe build/gtk_capture "dist/$NAME/bin/"
+          cp udev/99-openlru.rules "dist/$NAME/udev/"
+          cp README.md "dist/$NAME/"
+          tar -C dist -czf "$NAME-linux-x86_64.tar.gz" "$NAME"
+          # Source archive of the tagged commit
+          git archive --format=tar.gz --prefix="$NAME-src/" \
+            -o "$NAME-src.tar.gz" "$GITHUB_REF_NAME"
+
+      - name: Create or update GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            # Release was already created on the GitHub page: attach files
+            gh release upload "$GITHUB_REF_NAME" openlru-lib-*.tar.gz --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              --title "openlru-lib $GITHUB_REF_NAME" \
+              --generate-notes \
+              openlru-lib-*.tar.gz
+          fi
