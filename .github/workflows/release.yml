@@ -32,7 +32,7 @@ jobs:
           cp include/openlru.h "dist/$NAME/include/"
           cp build/gtk_probe build/gtk_capture "dist/$NAME/bin/"
           cp udev/99-openlru.rules "dist/$NAME/udev/"
-          cp README.md "dist/$NAME/"
+          cp readme.md "dist/$NAME/"
           tar -C dist -czf "$NAME-linux-x86_64.tar.gz" "$NAME"
           # Source archive of the tagged commit
           git archive --format=tar.gz --prefix="$NAME-src/" \
