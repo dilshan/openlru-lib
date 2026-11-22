@@ -30,3 +30,11 @@ sudo udevadm control --reload-rules && sudo udevadm trigger   # then re-plug
 * `2009:7638` / `2109:7638` are also used by some ordinary USB storage products; set `OLRU_DENY_MSC=1` to hide them from `olru_probe`.
 * The kernel driver detached on open is not re-attached on close; re-plug the sensor to restore it.
 * A handle must not be shared between threads.
+
+## Legal
+
+This is an independent implementation; the protocol was derived by analyzing the vendor's Linux SDK libraries and sniffing the USB communication link.
+
+This project is not affiliated with or endorsed by the vendor.
+
+This project is distributed under the terms of the [BSD-3-Clause license](LICENSE).
