@@ -7,6 +7,10 @@ A lightweight, dependency-free C library for **LRU series USB fingerprint sensor
 * **Probe** – list the sensors that are plugged in.
 * **Read** – detect a finger, download the raw 256×288 image, and read the feature template the sensor extracts.
 
+Made by *Shenzhen Lirox Information Technology Co., Ltd.*, the LRU series consists of compact USB fingerprint modules for embedded security and access-control devices. With an on-board processor handling image capture and template extraction, the modules communicate directly with the host via USB.
+
+To implement and test this library, I use the popular, noticeably thin [LRU1011](https://s.click.aliexpress.com/e/_c4ljoMUd) USB fingerprint reader.
+
 > There is no fingerprint matching, searching or verification in this library, by design. Images and templates are only read from the sensor.
 
 ## Quick start
