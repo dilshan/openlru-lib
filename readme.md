@@ -23,6 +23,10 @@ sudo udevadm control --reload-rules && sudo udevadm trigger   # then re-plug
 ./build/gtk_capture                                           # sample capture program.
 ```
 
+## Documentation
+
+Full documentation for the Open LRU Fingerprint Library is available in the [wiki section](wiki) of this repository. The documentation covers installation, the API, architecture, the USB protocol, supported devices, and common troubleshooting steps.
+
 ## Limitations
 
 * Support models: `2109:7638`, `0453:9005`, `0618:9018` and `2009:7638`.
